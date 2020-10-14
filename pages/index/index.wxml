@@ -1,38 +1,57 @@
 <view class="page" data-weui-theme="{{theme}}">
 
-<view class="weui-cells weui-cells_after-title">
-  <view wx:if="{{goods.length==0}}" class="weui-cell weui-cell_example ">
-    <label>暂无数据</label>
-  </view>
-  <view wx:if="{{goods.length>0}}" wx:for="{{goods}}" class="weui-cell weui-cell_example ">
-    <view class="weui-cell__bd">{{item.code}}</view>
-    <view class="weui-cell__ft">{{item.value}}</view>
-  </view>
-</view>
-
-<view class="page__bd" style="height: 100%;">
-  <view class="weui-tab">
-    <view class="weui-tab__panel">
+  <view class="weui-cells weui-cells_after-title">
+    <view wx:if="{{goods.length==0}}" class="weui-cell weui-cell_example ">
+      <label>暂无数据，请扫描</label>
     </view>
-    <view class="weui-tabbar">
-      <!-- <view class="weui-tabbar__item weui-bar__item_on">
+    <view wx:if="{{goods.length>0}}" wx:for="{{goods}}" class="weui-cell weui-cell_example ">
+      <view class="weui-cell__bd">{{item.code}}</view>
+      <view class="weui-cell__ft">{{item.value}}</view>
+    </view>
+  </view>
+
+
+  <view class="weui-footer weui-footer_fixed-bottom">
+    <view>合计：{{count}}</view>
+  </view>
+
+  <view class="page__bd" style="height: 100%;">
+
+    <view class="weui-tab">
+      <view class="weui-tab__panel">
+      </view>
+      <view class="weui-tabbar">
+        <!-- <view class="weui-tabbar__item weui-bar__item_on">
         <view style="display: inline-block; position: relative;">
           <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
           <text class="weui-badge" style="position: absolute; top: -2px; right: -13px;">8</text>
         </view>
         <view class="weui-tabbar__label">微信</view>
       </view> -->
-      <view class="weui-tabbar__item" >
-        <button   style="width:100px"  class="weui-btn weui-btn_mini weui-btn_primary" bindtap="scanCode">扫描</button>
-      </view>
-      <view class="weui-tabbar__item">
-        <button  style="width:100px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="clean">清空</button>
-      </view>
-      <!-- <view class="weui-tabbar__item">
+        <view class="weui-tabbar__item">
+          <button style="width:100px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="scanCode">扫描</button>
+        </view>
+        <view class="weui-tabbar__item">
+          <button style="width:100px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="clean">清空</button>
+        </view>
+
+        <view class="weui-tabbar__item">
+          <button style="width:100px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="showAddgoods">手动输入</button>
+        </view>
+        <!-- <view class="weui-tabbar__item">
         <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
         <view class="weui-tabbar__label">我</view>
       </view> -->
+      </view>
     </view>
   </view>
-</view>
+
+  <popup id='addgoods' 
+      title='手动输入' 
+      content='' 
+      btn_no='取消' 
+      btn_ok='确定'
+      bind:error="_error"  
+      bind:success="_success">
+  </popup>
 </view>
