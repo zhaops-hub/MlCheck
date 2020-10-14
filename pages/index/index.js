@@ -37,6 +37,25 @@ Page({
   showAddgoods: function () {
     this.addgoods.showPopup();
   },
+  copy: function () {
+    let data = "";
+    for (const i in this.data.goods) {
+      let code = this.data.goods[i].code;
+      let value = this.data.goods[i].value;
+      data += code + "                        " + value + "\n";
+    }
+    
+    wx.setClipboardData({
+      data: data,
+      success(res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: "success",
+          duration: 2000
+        })
+      }
+    })
+  },
   clean: function () {
     this.data.goods = [];
     // 更新数据
