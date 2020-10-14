@@ -19,6 +19,13 @@ Page({
   onLoad: function () {
 
   },
+  clean:function(){
+    this.data.goods = [];
+    // 更新数据
+    this.setData({
+      goods: this.data.goods
+    });
+  },
   scanCode: function () {
     wx.scanCode({
       onlyFromCamera: false,
@@ -35,6 +42,7 @@ Page({
             }
           }
 
+          // 如果之前没有就新加项
           if (!isExit) {
             this.data.goods.push({
               code: key,
@@ -42,6 +50,7 @@ Page({
             })
           }
 
+          // 更新数据
           this.setData({
             goods: this.data.goods
           });

@@ -22,16 +22,12 @@
         </view>
         <view class="weui-tabbar__label">微信</view>
       </view> -->
-      <view class="weui-tabbar__item">
-        <button class="weui-btn weui-btn_mini weui-btn_primary" bindtap="scanCode">扫描</button>
+      <view class="weui-tabbar__item" >
+        <button   style="width:100px"  class="weui-btn weui-btn_mini weui-btn_primary" bindtap="scanCode">扫描</button>
       </view>
-      <!-- <view class="weui-tabbar__item">
-        <view style="display: inline-block; position: relative;">
-          <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
-          <text class="weui-badge weui-badge_dot" style="position: absolute; top: 0; right: -6px;"></text>
-        </view>
-        <view class="weui-tabbar__label">发现</view>
-      </view> -->
+      <view class="weui-tabbar__item">
+        <button  style="width:100px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="clean">清空</button>
+      </view>
       <!-- <view class="weui-tabbar__item">
         <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
         <view class="weui-tabbar__label">我</view>
