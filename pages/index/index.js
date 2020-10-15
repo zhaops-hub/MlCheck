@@ -9,7 +9,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     goods: [],
-    count: 0
+    count: 0,
   },
 
 
@@ -22,11 +22,12 @@ Page({
   onLoad: function () {
     this.addgoods = this.selectComponent("#addgoods");
 
+    // 检测变量变化
     app.watch(this, {
       goods: function (newValue) {
         let count = 0;
         for (const i in this.data.goods) {
-          count += this.data.goods[i].value;
+          count += parseInt(this.data.goods[i].value);
         }
         this.setData({
           count: count
@@ -34,8 +35,37 @@ Page({
       }
     })
   },
+  delGoods: function (e) {
+    let that = this;
+    let code = e.currentTarget.dataset['code'];
+    let index = e.currentTarget.dataset['index'];
+    wx.showModal({
+      title: '提示',
+      content: '确认要删除' + code + '?',
+      success: function (res) {
+        if (res.confirm) {
+          that.data.goods.splice(index, 1)
+
+          // 更新数据
+          that.setData({
+            goods: that.data.goods
+          });
+        } else if (res.cancel) {}
+      }
+    })
+  },
   showAddgoods: function () {
     this.addgoods.showPopup();
+  },
+  update: function (e) {
+    let code = e.currentTarget.dataset['code'];
+    let value = e.currentTarget.dataset['value'];
+    let index = e.currentTarget.dataset['index'];
+    this.addgoods.showPopup({
+      code: code,
+      value: value,
+      index: index
+    });
   },
   copy: function () {
     let data = "";
@@ -44,7 +74,7 @@ Page({
       let value = this.data.goods[i].value;
       data += code + "                        " + value + "\n";
     }
-    
+
     wx.setClipboardData({
       data: data,
       success(res) {
@@ -74,11 +104,18 @@ Page({
     this.addgoods.hidePopup();
     let code = data.detail.code;
     let value = data.detail.value;
+    let isUpdate = data.detail.isUpdate;
 
-    this.data.goods.push({
-      code: code,
-      value: parseInt(value)
-    });
+    if (isUpdate) {
+      let index = data.detail.index;
+      if (this.data.goods[index].code != code) return;
+      this.data.goods[index].value = value;
+    } else {
+      this.data.goods.unshift({
+        code: code,
+        value: parseInt(value)
+      });
+    }
 
     // 更新数据
     this.setData({
@@ -107,7 +144,7 @@ Page({
 
           // 如果之前没有就新加项
           if (!isExit) {
-            this.data.goods.push({
+            this.data.goods.unshift({
               code: key,
               value: value
             })

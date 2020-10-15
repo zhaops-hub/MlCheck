@@ -5,3 +5,12 @@
  */
  .weui-tabbar{position:fixed;bottom:0;left:0;right:0}
  .weui-footer{margin-bottom:50px}.weui-footer_fixed-bottom{margin-bottom:1}
+
+
+.valueV{
+  text-align: right;
+  background-color: rebeccapurple;
+  padding: 5px;
+  background-color: #00FFFF;
+}
+ 

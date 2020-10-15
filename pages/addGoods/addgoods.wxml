@@ -3,7 +3,7 @@
     <view class="wx-popup-title">{{title}}</view>
     <view class="wx-popup-con">
       <view class="weui-cells weui-cells_form">
-              <view class="weui-cell weui-cell_active" style="margin-top:10px;">
+              <view wx:if="{{!isUpdate}}" class="weui-cell weui-cell_active" style="margin-top:10px;">
                 <view class="weui-cell__bd">
                   <input class="weui-input" type="number" placeholder="请输入条码" placeholder-class="weui-input__placeholder" value="{{code}}" bindinput="codeInput" />
                 </view>

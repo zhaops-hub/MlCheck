@@ -34,7 +34,9 @@ Component({
   data: {
     flag: true,
     code: '',
-    value: 1
+    value: 1,
+    isUpdate: false,
+    index: 0
   },
 
   /**
@@ -48,16 +50,32 @@ Component({
       })
     },
     //展示弹框
-    showPopup() {
+    showPopup(data) {
       this.setData({
         flag: !this.data.flag
       })
+
+      // 修改
+      if (data) {
+        this.setData({
+          code: data.code,
+          value: data.value,
+          isUpdate: true,
+          index: data.index
+        });
+      } else // 添加
+      {
+        this.clean();
+      }
+
     },
 
     clean() {
       this.setData({
         code: "",
-        value: 1
+        value: 1,
+        isUpdate: false,
+        index: -1
       });
     },
 

@@ -4,9 +4,11 @@
     <view wx:if="{{goods.length==0}}" class="weui-cell weui-cell_example ">
       <label>暂无数据，请扫描</label>
     </view>
-    <view wx:if="{{goods.length>0}}" wx:for="{{goods}}" class="weui-cell weui-cell_example ">
+    <view wx:if="{{goods.length>0}}" wx:for="{{goods}}" bindlongpress="delGoods" data-code="{{item.code}}" data-index="{{index}}" class="weui-cell weui-cell_example ">
       <view class="weui-cell__bd">{{item.code}}</view>
-      <view class="weui-cell__ft">{{item.value}}</view>
+      <view  class="weui-cell__ft valueV" bindtap="update" data-code="{{item.code}}" data-value="{{item.value}}" data-index="{{index}}" > 
+        {{item.value}}
+      </view>
     </view>
   </view>
 
@@ -49,12 +51,6 @@
     </view>
   </view>
 
-  <popup id='addgoods' 
-      title='手动输入' 
-      content='' 
-      btn_no='取消' 
-      btn_ok='确定'
-      bind:error="_error"  
-      bind:success="_success">
+  <popup id='addgoods' title='手动输入' content='' btn_no='取消' btn_ok='确定' bind:error="_error" bind:success="_success">
   </popup>
 </view>
