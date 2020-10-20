@@ -87,11 +87,23 @@ Page({
     })
   },
   clean: function () {
-    this.data.goods = [];
-    // 更新数据
-    this.setData({
-      goods: this.data.goods
-    });
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认要清空?',
+      success: function (res) {
+        if (res.confirm) {
+          that.data.goods = [];
+          // 更新数据
+          that.setData({
+            goods: that.data.goods
+          });
+        } else if (res.cancel) {}
+      }
+    })
+
+
+
   },
   //取消事件
   _error() {

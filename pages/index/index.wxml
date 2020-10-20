@@ -1,12 +1,14 @@
 <view class="page" data-weui-theme="{{theme}}">
 
   <view class="weui-cells weui-cells_after-title">
-    <view wx:if="{{goods.length==0}}" class="weui-cell weui-cell_example ">
+    <view wx:if="{{goods.length==0}}" class="weui-cell weui-cell_example " style="height:50%">
       <label>暂无数据，请扫描</label>
     </view>
-    <view wx:if="{{goods.length>0}}" wx:for="{{goods}}" bindlongpress="delGoods" data-code="{{item.code}}" data-index="{{index}}" class="weui-cell weui-cell_example ">
+    <view wx:if="{{goods.length>0}}" wx:for="{{goods}}" bindlongpress="delGoods" data-code="{{item.code}}"
+      data-index="{{index}}" class="weui-cell weui-cell_example ">
       <view class="weui-cell__bd">{{item.code}}</view>
-      <view  class="weui-cell__ft valueV" bindtap="update" data-code="{{item.code}}" data-value="{{item.value}}" data-index="{{index}}" > 
+      <view class="weui-cell__ft valueV" bindtap="update" data-code="{{item.code}}" data-value="{{item.value}}"
+        data-index="{{index}}">
         {{item.value}}
       </view>
     </view>
@@ -17,10 +19,14 @@
     <view>合计：{{count}}</view>
   </view>
 
-  <view class="page__bd" style="height: 100%;">
 
-    <view class="weui-tab">
-      <view class="weui-tab__panel">
+
+  <popup id='addgoods' title='手动输入' content='' btn_no='取消' btn_ok='确定' bind:error="_error" bind:success="_success">
+  </popup>
+
+  <view class="page" data-weui-theme="{{theme}}">
+    <view>
+      <view>
       </view>
       <view class="weui-tabbar">
         <!-- <view class="weui-tabbar__item weui-bar__item_on">
@@ -50,7 +56,4 @@
       </view>
     </view>
   </view>
-
-  <popup id='addgoods' title='手动输入' content='' btn_no='取消' btn_ok='确定' bind:error="_error" bind:success="_success">
-  </popup>
 </view>
