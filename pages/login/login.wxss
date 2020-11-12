@@ -29,7 +29,7 @@ page{
   
  .inputView { 
   /* background-color: #fff;  */
-  line-height: 45px; 
+  line-height: 40px; 
   border-radius:20px;
    border:1px solid #999999;
  } 

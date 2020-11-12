@@ -4,8 +4,11 @@
     <view wx:if="{{goods.length==0}}" class="weui-cell weui-cell_example " style="height:50%">
       <label>暂无数据，请扫描</label>
     </view>
+
+
+
     <view wx:if="{{goods.length>0}}" wx:for="{{goods}}" bindlongpress="delGoods" data-code="{{item.code}}"
-      data-index="{{index}}" class="weui-cell weui-cell_example ">
+      data-index="{{index}}" class="weui-cell weui-cell_example " style="height:90%">
       <view class="weui-cell__bd">{{item.code}}</view>
       <view class="weui-cell__ft valueV" bindtap="update" data-code="{{item.code}}" data-value="{{item.value}}"
         data-index="{{index}}">
@@ -14,12 +17,9 @@
     </view>
   </view>
 
-
   <view class="weui-footer weui-footer_fixed-bottom">
     <view>合计：{{count}}</view>
   </view>
-
-
 
   <popup id='addgoods' title='手动输入' content='' btn_no='取消' btn_ok='确定' bind:error="_error" bind:success="_success">
   </popup>
@@ -28,32 +28,24 @@
     <view>
       <view>
       </view>
-      <view class="weui-tabbar">
-        <!-- <view class="weui-tabbar__item weui-bar__item_on">
-        <view style="display: inline-block; position: relative;">
-          <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
-          <text class="weui-badge" style="position: absolute; top: -2px; right: -13px;">8</text>
-        </view>
-        <view class="weui-tabbar__label">微信</view>
-      </view> -->
-        <view class="weui-tabbar__item">
-          <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="showAddgoods">输入</button>
-        </view>
-        <view class="weui-tabbar__item">
-          <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="clean">清空</button>
-        </view>
 
-        <view class="weui-tabbar__item">
-          <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="scanCode">扫描</button>
-        </view>
-        <view class="weui-tabbar__item">
-          <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="copy">复制</button>
-        </view>
-        <!-- <view class="weui-tabbar__item">
-        <image src="../images/icon_tabbar.png" alt class="weui-tabbar__icon"></image>
-        <view class="weui-tabbar__label">我</view>
-      </view> -->
-      </view>
     </view>
   </view>
 </view>
+
+<view class="weui-tabbar">
+  <view class="weui-tabbar__item">
+    <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="showAddgoods">输入</button>
+  </view>
+  <view class="weui-tabbar__item">
+    <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="clean">清空</button>
+  </view>
+
+  <view class="weui-tabbar__item">
+    <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="scanCode">扫描</button>
+  </view>
+  <view class="weui-tabbar__item">
+    <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="copy">复制</button>
+  </view>
+</view>
+<!-- <menu bindmenuItemClick="menuItemClick" mainmodel="{{mainmodel}}" menulist ="{{menulist}}" ></menu> -->

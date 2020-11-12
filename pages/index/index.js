@@ -10,8 +10,28 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     goods: [],
     count: 0,
+    token: '',
+    menulist: [{
+        "id": "1",
+        "url": "../../img/top.png",
+        "title": "折叠",
+      },
+      {
+        "id": "2",
+        "url": "../../img/add.png",
+        "title": "添加",
+      },
+      {
+        "id": "3",
+        "url": "../../img/buy.png",
+        "title": "购物车",
+      },
+    ],
+    mainmodel: {
+      "url": "../../img/home.png",
+      "title": "菜单",
+    }
   },
-
 
   //事件处理函数
   bindViewTap: function () {
@@ -20,6 +40,24 @@ Page({
     })
   },
   onLoad: function () {
+
+    // 查看是否登录
+    let token = wx.getStorageSync('token');
+    if (token) {
+      this.setData({
+        token: token
+      });
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '请重新登录',
+        success(res) {
+          console.log(res);
+          this.toLogin();
+        }
+      })
+    }
+
     this.addgoods = this.selectComponent("#addgoods");
 
     // 检测变量变化
@@ -35,6 +73,23 @@ Page({
       }
     })
   },
+  // 跳转到登录页
+  toLogin: function () {
+    wx.navigateTo({
+      url: '../login/login'
+    })
+  },
+  // 点击确定菜单选项
+  menuItemClick: function (res) {
+    console.log(res);
+    //获取点击事件的信息
+    let clickInfo = res.detail.iteminfo
+    console.log(clickInfo);
+    // 根据不同类型进行判别处理
+    //事件的处理 代码
+
+  },
+  // 删除商品
   delGoods: function (e) {
     let that = this;
     let code = e.currentTarget.dataset['code'];
@@ -54,9 +109,11 @@ Page({
       }
     })
   },
+  // 添加弹出框
   showAddgoods: function () {
     this.addgoods.showPopup();
   },
+  // 修改
   update: function (e) {
     let code = e.currentTarget.dataset['code'];
     let value = e.currentTarget.dataset['value'];

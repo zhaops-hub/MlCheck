@@ -5,6 +5,15 @@
  </view> 
  <view class="login-from"> 
  
+ <!--公司名称-->
+
+<view class="inputView"> 
+  <image class="nameImage" src="../../img/name.png"></image> 
+  <label class="loginLab">公司名称</label> 
+  <input class="inputText" placeholder="请输入公司名称" bindinput="companyNameInput" /> 
+ </view> 
+ <view class="line"></view> 
+
  <!--账号-->
  <view class="inputView"> 
   <image class="nameImage" src="../../img/name.png"></image> 
