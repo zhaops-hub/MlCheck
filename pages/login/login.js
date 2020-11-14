@@ -11,9 +11,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    username: 'admin',
-    password: '1qaz2wsx!@',
-    companyName: 'admin',
+    username: '',
+    password: '',
+    companyName: '',
     url: 'https://www.minglifuzhuang.cn:2000'
   },
 

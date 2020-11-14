@@ -8,6 +8,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    wsbasePath: 'wss://www.minglifuzhuang.cn:2000/websocket/',
     goods: [],
     count: 0,
     token: '',
@@ -43,9 +44,12 @@ Page({
 
     // 查看是否登录
     let token = wx.getStorageSync('token');
+    let id = wx.getStorageSync('id')
     if (token) {
+      // 赋值token
       this.setData({
-        token: token
+        token: token,
+        wsbasePath: this.data.wsbasePath + token
       });
     } else {
       wx.showModal({
@@ -72,6 +76,11 @@ Page({
         });
       }
     })
+
+
+    // 连接websocket
+    var socket = require('./socket');
+    socket.webSocketStart(this.data.wsbasePath);
   },
   // 跳转到登录页
   toLogin: function () {
@@ -124,6 +133,7 @@ Page({
       index: index
     });
   },
+  // 复制
   copy: function () {
     let data = "";
     for (const i in this.data.goods) {
@@ -143,6 +153,7 @@ Page({
       }
     })
   },
+  // 清空
   clean: function () {
     let that = this;
     wx.showModal({
@@ -158,9 +169,6 @@ Page({
         } else if (res.cancel) {}
       }
     })
-
-
-
   },
   //取消事件
   _error() {
@@ -193,6 +201,7 @@ Page({
 
     this.addgoods.clean();
   },
+  // 扫描
   scanCode: function () {
     wx.scanCode({
       onlyFromCamera: false,
