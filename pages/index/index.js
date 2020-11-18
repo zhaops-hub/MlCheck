@@ -182,7 +182,7 @@ Page({
   },
 
   updateTitle() {
-    let title = "明礼盘点";
+    let title = "千明盘点";
     if (this.data.area)
       title += "(" + this.data.area + ")"
     wx.setNavigationBarTitle({

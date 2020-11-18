@@ -21,6 +21,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onLoad: function () {
+      let token = wx.getStorageSync('token');
+      if (token) {
+        wx.navigateTo({
+          url: '../index/index'
+        })
+      }
+    },
     // 获取输入账号 
     usernameInput: function (e) {
       this.setData({
@@ -79,7 +87,7 @@ Component({
               wx.setStorageSync('userName', userName);
               wx.setStorageSync('token', token);
               wx.setStorageSync('isAdmin', isAdmin);
- 
+
               wx.showToast({
                 title: '登录成功！',
                 icon: 'success',
