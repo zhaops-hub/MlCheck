@@ -88,11 +88,11 @@ Component({
               wx.setStorageSync('token', token);
               wx.setStorageSync('isAdmin', isAdmin);
 
-              wx.showToast({
-                title: '登录成功！',
-                icon: 'success',
-                duration: 2000
-              })
+              // wx.showToast({
+              //   title: '登录成功！',
+              //   icon: 'success',
+              //   duration: 2000
+              // })
               wx.navigateTo({
                 url: '../index/index'
               })
