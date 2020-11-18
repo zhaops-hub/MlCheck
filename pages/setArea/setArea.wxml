@@ -1,0 +1,19 @@
+<view class="wx-popup" hidden="{{flag}}">
+  <view class='popup-container'>
+    <view class="wx-popup-title">{{title}}</view>
+    <view class="wx-popup-con">
+      <view class="weui-cells weui-cells_form">
+              <view wx:if="{{!isUpdate}}" class="weui-cell weui-cell_active" style="margin-top:10px;">
+                <view class="weui-cell__bd">
+                  <input class="weui-input" type="text" placeholder="请输入区域" placeholder-class="weui-input__placeholder" value="{{area}}" bindinput="areaInput" />
+                </view>
+              </view>
+              <view class="line"></view>
+      </view>
+    </view>
+    <view class="wx-popup-btn">
+      <text class="btn-no" bindtap='_error'>{{btn_no}}</text>
+      <text class="btn-ok" bindtap='_success'>{{btn_ok}}</text>
+    </view>
+  </view>
+</view>

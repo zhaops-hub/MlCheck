@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "popup": "../addGoods/addgoods",
-    "menu": "/components/menu/menu",
-    "movemenu": "/components/movemenu/movemenu"
+    "setArea": "../setArea/setArea",
+    "menu": "../../components/menu/menu"
   }
 }

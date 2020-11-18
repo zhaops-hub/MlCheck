@@ -12,26 +12,7 @@ Page({
     goods: [],
     count: 0,
     token: '',
-    menulist: [{
-        "id": "1",
-        "url": "../../img/top.png",
-        "title": "折叠",
-      },
-      {
-        "id": "2",
-        "url": "../../img/add.png",
-        "title": "添加",
-      },
-      {
-        "id": "3",
-        "url": "../../img/buy.png",
-        "title": "购物车",
-      },
-    ],
-    mainmodel: {
-      "url": "../../img/home.png",
-      "title": "菜单",
-    }
+    area: ''
   },
 
   //事件处理函数
@@ -63,7 +44,7 @@ Page({
     }
 
     this.addgoods = this.selectComponent("#addgoods");
-
+    this.setArea = this.selectComponent("#setArea");
     // 检测变量变化
     app.watch(this, {
       goods: function (newValue) {
@@ -122,6 +103,12 @@ Page({
   showAddgoods: function () {
     this.addgoods.showPopup();
   },
+  // 设置区域
+  showSetArea: function () {
+    this.setArea.showPopup({
+      area: this.data.area
+    });
+  },
   // 修改
   update: function (e) {
     let code = e.currentTarget.dataset['code'];
@@ -136,6 +123,8 @@ Page({
   // 复制
   copy: function () {
     let data = "";
+    if (this.data.area)
+      data = this.data.area + "\n";
     for (const i in this.data.goods) {
       let code = this.data.goods[i].code;
       let value = this.data.goods[i].value;
@@ -174,6 +163,31 @@ Page({
   _error() {
     console.log('你点击了取消');
     this.addgoods.hidePopup();
+  },
+  _areaerror() {
+    console.log('你点击了取消');
+    this.setArea.hidePopup();
+    this.updateTitle();
+  },
+  // 设置区域 确认事件
+  _areasuccess(data) {
+    this.setArea.hidePopup();
+    let area = data.detail.area;
+    this.setData({
+      area: area
+    })
+
+    this.updateTitle();
+    console.log(area);
+  },
+
+  updateTitle() {
+    let title = "明礼盘点";
+    if (this.data.area)
+      title += "(" + this.data.area + ")"
+    wx.setNavigationBarTitle({
+      title: title
+    })
   },
   //确认事件
   _success(data) {

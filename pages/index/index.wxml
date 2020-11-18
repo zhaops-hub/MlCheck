@@ -24,6 +24,10 @@
   <popup id='addgoods' title='手动输入' content='' btn_no='取消' btn_ok='确定' bind:error="_error" bind:success="_success">
   </popup>
 
+  <setArea id='setArea' title='设置区域' content='' btn_no='取消' btn_ok='确定' bind:error="_areaerror" bind:success="_areasuccess">
+  </setArea>
+
+
   <view class="page" data-weui-theme="{{theme}}">
     <view>
       <view>
@@ -47,5 +51,10 @@
   <view class="weui-tabbar__item">
     <button style="width:70px" class="weui-btn weui-btn_mini weui-btn_primary" bindtap="copy">复制</button>
   </view>
+</view>
+
+<!--圆形点击框  -->
+<view class="round-click">
+   <navigator url="null" bindtap="showSetArea" >设置区域</navigator>
 </view>
 <!-- <menu bindmenuItemClick="menuItemClick" mainmodel="{{mainmodel}}" menulist ="{{menulist}}" ></menu> -->
